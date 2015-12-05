@@ -1,3 +1,36 @@
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin 1s infinite linear;
+	font-size : 40px;
+	margin : 0 auto !important;
+	float : none !important;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes spin {
+     from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+
+.error-message{
+	
+	color : red;
+	
+}
+
+
+.input-group{
+	
+	margin-bottom : 5px;
+	
+}
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,7 +52,6 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
 /* Make the masthead heading the same height as the navigation */

@@ -1,0 +1,17 @@
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon1">
+				<span class="glyphicon glyphicon-search"></span>
+  </span>
+<input type="text" class="form-control" id="inputAuthor"  ng-model="filterModel"></input>
+
+</div>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="snippet in snippets | filter : filterModel"  ui-sref="details({id:snippet.$id})">
+    <span>{{snippet.author}}</span>
+	</br>
+	<span>{{snippet.description | slugify}}</span>
+	<span class="glyphicon glyphicon-trash" style="float : right"  ng-click='removeSnippet(snippet)'></span>
+
+  </li>
+</ul>
