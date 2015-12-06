@@ -1,6 +1,18 @@
+'use strict';
+
+
+/* snippetFactory - provides part of CRUD services (create , read , delete)    
+*  The findSnippet method returns a promise because of async call to firebase . 
+*
+*
+*
+*
+*/
+
 angular.module('snippetApp' )
 
 .factory('snippetFactory', function ($firebaseArray , $q) {
+	
 	
 	var ref = new Firebase("https://snippetassignment.firebaseio.com/snippets");
 
@@ -8,10 +20,14 @@ angular.module('snippetApp' )
   return {
     getSnippets: function () {
       
+	  var deferred = $q.defer();
 	  
       
-      return  $firebaseArray(ref);
+      var snippets = $firebaseArray(ref);
 	  
+	  deferred.resolve(snippets);
+	  
+	  return deferred.promise;
     },
 	addSnippet : function(snippet){
 		
@@ -33,7 +49,7 @@ angular.module('snippetApp' )
 		snippets.$loaded().then(function(){
 			
 			snippet = snippets.$getRecord(id);
-			deferred.resolve(snippet)
+			deferred.resolve(snippet);
 		});
 		
 		
@@ -55,5 +71,5 @@ angular.module('snippetApp' )
 		 
 	}
 	
-  }
+  };
 });

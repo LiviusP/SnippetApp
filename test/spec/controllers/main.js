@@ -1,30 +1,36 @@
+'use strict';
 
- 
-describe('ListCtrl', function(){
-    var scope;//we'll use this scope in our tests
- 
-    //mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('snippetApp'));
-    //mock the controller for the same reason and include $rootScope and $controller
-    beforeEach(angular.mock.inject(function($rootScope, $controller){
-        //create an empty scope
-        scope = $rootScope.$new();
-        //declare the controller and inject our empty scope
-        $controller('ListCtrl', {
-			$scope: scope,
-			snippetFactory : function(){return {
-				getSnippets: function () {
-      
-				return  [{author : 'author'}];
-	  
-			}	
-			}
-			}});
-    }));
-	 // tests start here
-    it('should have variable text = "Hello World!"', function(){
-        expect(snippetFactory).toBe('Hello World!');
-    });
+ describe('Controller: DetailsCtrl', function () {
+
+module(function($provide){
+  $provide.factory('snippetFactory', ['$q', function($q)
+  {function findSnippet(data){
+      if(passPromise){
+        return $q.when();
+      } else {
+        return $q.reject();
+      }
+    }
+    return{
+      findSnippet: findSnippet
+    };
+  }]);
+});
+
+beforeEach(inject(function($rootScope, $controller, snippetFactory){
+  var scope=$rootScope.$new();
+  var mockSnippetFactory=snippetFactory;
+  spyOn(mockSnippetFactory,'findSnippet').andCallThrough();
+  var detailsController = $controller('DetailsCtrl', {
+    $scope: scope, 
+    snippetFactory: mockSnippetFactory
+  });
+}));
+
+ it('should get snippets list', function () {
+    expect(detailsController.snippet).toBe(1);
+  });
+
 });
 
 

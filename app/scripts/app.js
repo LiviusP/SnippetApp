@@ -6,7 +6,8 @@
  * @description
  * # snippetAppApp
  *
- * Main module of the application.
+ * Main module of the application and state configarion
+ *
  */
 angular
   .module('snippetApp', ['ui.router' , 'firebase' , 'slugifier'])
@@ -22,7 +23,7 @@ angular
 	  controller : "ListCtrl as listCtrl"
     })
     .state('details', {
-      url: "/list/details/{id}",
+      url: "/list/details/{id}",   
       templateUrl: "partials/details.html",
       controller: "DetailsCtrl as detailsCtrl"
     })
